@@ -14,7 +14,8 @@ def adjmat_to_adjlist(adjmat: List[List[int]]) -> Dict[int, List[int]]:
     return dictonary
 
 def dfs_recursive(G: Dict[int, List[int]], s: int) -> List[int]:
-    def dfs_recursive_visited(G, s, visited = None):
+    def dfs_recursive_visited(G: Dict[int, List[int]], s: int, 
+    visited: List[int] = None) -> List[int]:
         if visited is None:
             visited = []
         visited.append(s)
@@ -42,24 +43,21 @@ def dfs_iterative(G: Dict[int, List[int]], s: int) -> List[int]:
                     stack = looking_stack + stack
     return visited
 
+def is_acyclic(G: Dict[int, List[int]]) -> bool:
+    def dfs_acyclic_test(G: Dict[int, List[int]], s: int, 
+    visited: List[int] = None) -> bool:
+        if visited is None:
+            visited = []
+        visited.append(s)
+        if s in G:
+            for u in G[s]:
+                if u in visited:
+                    return True
+                if dfs_acyclic_test(G, u, visited[:]):
+                    return True
+            return False
 
-A = [
-    [1, 3, 0],
-    [0, 0, 2],
-    [1, 2, 0]
-]
-
-G = {
-    1: [2, 3, 5],
-    2: [1, 4, 6],
-    3: [1, 7],
-    4: [2],
-    5: [1, 6],
-    6: [2, 5],
-    7: [3]
-}
-
-print(A)
-print(adjmat_to_adjlist(A))
-print(dfs_recursive(G, 1))
-print(dfs_iterative(G, 1))
+    for key in G:
+        if dfs_acyclic_test(G, key):
+            return False
+    return True
