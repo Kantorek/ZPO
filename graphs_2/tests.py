@@ -1,6 +1,4 @@
-import graphs_2 
-
-
+import graphs_2 as g
 
 G = {
     1: [2, 4],
@@ -10,4 +8,4 @@ G = {
     7: [1]
 }
 
-print(graphs_2.neighbors(G, 1, 2))
+print(g.neighbors(G, 3, 2))
