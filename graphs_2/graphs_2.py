@@ -1,7 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Jakub Klimek, 407457
+
 from typing import List, Set, Dict
- 
+import networkx as nx
+
+
 # Pomocnicza definicja podpowiedzi typu reprezentującego etykietę
 # wierzchołka (liczba 1..n).
 VertexID = int
@@ -29,4 +33,42 @@ def neighbors(adjlist: AdjList, start_vertex_id: VertexID,
                     n_set.update(adjlist[x])
                 n_list = list(n_set)
     return n_set
+
+EdgeID = int
+
+# Nazwana krotka reprezentująca segment ścieżki.
+class TrailSegmentEntry:
+    pass  # FIXME: Uzupełnij!
+ 
+ 
+Trail = List[TrailSegmentEntry]
+ 
+ 
+def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
+    """Stwórz multigraf na podstawie danych o krawędziach wczytanych z pliku.
+ 
+    :param filepath: względna ścieżka do pliku (wraz z rozszerzeniem)
+    :return: multigraf
+    """
+ 
+    raise NotImplementedError()
+ 
+ 
+def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Trail:
+    """Znajdź najkrótszą ścieżkę w grafie pomiędzy zadanymi wierzchołkami.
+ 
+    :param g: graf
+    :param v_start: wierzchołek początkowy
+    :param v_end: wierzchołek końcowy
+    :return: najkrótsza ścieżka
+    """
+    raise NotImplementedError()
+ 
+ 
+def trail_to_str(trail: Trail) -> str:
+    """Wyznacz reprezentację tekstową ścieżki.
+ 
+    :param trail: ścieżka
+    :return: reprezentacja tekstowa ścieżki
+    """
     raise NotImplementedError()
