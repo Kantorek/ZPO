@@ -38,7 +38,10 @@ EdgeID = int
 
 # Nazwana krotka reprezentująca segment ścieżki.
 class TrailSegmentEntry:
-    pass  # FIXME: Uzupełnij!
+    Start_ver: VertexID
+    End_ver: VertexID
+    Edge: EdgeID
+    Weight: float
  
  
 Trail = List[TrailSegmentEntry]
