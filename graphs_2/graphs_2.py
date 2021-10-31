@@ -44,7 +44,6 @@ class TrailSegmentEntry:
     Weight: float
  
 
-
 Trail = List[TrailSegmentEntry]
  
  
@@ -54,6 +53,11 @@ def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
     :param filepath: względna ścieżka do pliku (wraz z rozszerzeniem)
     :return: multigraf
     """
+    with open(filepath) as file:
+        g = []
+        for line in file:
+            if str.strip(self):
+
  
     raise NotImplementedError()
  
