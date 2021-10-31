@@ -43,7 +43,8 @@ class TrailSegmentEntry:
     Edge: EdgeID
     Weight: float
  
- 
+
+
 Trail = List[TrailSegmentEntry]
  
  
