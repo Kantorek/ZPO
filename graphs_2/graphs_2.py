@@ -60,7 +60,8 @@ def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Tr
     :return: najkrótsza ścieżka
     """
 
-
+ 
+ 
     return
     raise NotImplementedError()
  
