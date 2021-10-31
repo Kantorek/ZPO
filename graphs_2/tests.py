@@ -48,7 +48,5 @@ edges_in_path = list(zip(dijkstra_path_nodes[0:],
     # Zaznacz na diagramie grafu najkrótszą drogę.
 nx.draw_networkx_edges(G, pos, edgelist=edges_in_path,
     width=3, alpha=0.5, edge_color='b', style='dashed')
-     
-    # Wyświetl okno z diagramem.
-plt.show()
 
+print(g.load_multigraph_from_file("directed_graph_blank_lines.dat"))

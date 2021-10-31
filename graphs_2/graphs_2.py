@@ -1,18 +1,11 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 # Jakub Klimek, 407457
 
 from typing import List, Set, Dict
 import networkx as nx
 
 
-# Pomocnicza definicja podpowiedzi typu reprezentującego etykietę
-# wierzchołka (liczba 1..n).
 VertexID = int
- 
-# Pomocnicza definicja podpowiedzi typu reprezentującego listę sąsiedztwa.
 AdjList = Dict[VertexID, List[VertexID]]
- 
 Distance = int
  
 def neighbors(adjlist: AdjList, start_vertex_id: VertexID,
@@ -36,30 +29,26 @@ def neighbors(adjlist: AdjList, start_vertex_id: VertexID,
 
 EdgeID = int
 
-# Nazwana krotka reprezentująca segment ścieżki.
 class TrailSegmentEntry:
     Start_ver: VertexID
     End_ver: VertexID
     Edge: EdgeID
     Weight: float
  
-
 Trail = List[TrailSegmentEntry]
- 
- 
+  
 def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
-    """Stwórz multigraf na podstawie danych o krawędziach wczytanych z pliku.
- 
-    :param filepath: względna ścieżka do pliku (wraz z rozszerzeniem)
-    :return: multigraf
-    """
-    with open(filepath) as file:
-        g = []
-        for line in file:
-            if str.strip(self):
 
- 
-    raise NotImplementedError()
+    with open(filepath) as file:
+        weights = []
+        for line in file:
+            if line.strip():
+                v = line.split()
+                s_val = (int(v[0]), int(v[1]), float(v[2]))
+                weights.append(s_val)
+        M_Graph = nx.MultiDiGraph()
+        M_Graph.add_edges_from(weights)
+    return M_Graph
  
  
 def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Trail:
@@ -70,6 +59,9 @@ def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Tr
     :param v_end: wierzchołek końcowy
     :return: najkrótsza ścieżka
     """
+
+
+    return
     raise NotImplementedError()
  
  
