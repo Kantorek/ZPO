@@ -70,9 +70,9 @@ def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Tr
  
 def trail_to_str(trail: Trail) -> str:
     distance = 0
-    str_path = str
-    for x in range(len(trail)-1):
+    str_path = ""
+    for x in range(len(trail)):
         distance += trail[x].Weight
-        str_path += str(f"{x} -[{trail[x].Edge}: {trail[x].Weight}]->", sep=' ')
-    str_path += str(f"{trail[len(trail)-1].Edge}  (total = {distance})")
+        str_path += str(f"{trail[x].Start_ver} -[{x}: {trail[x].Weight}]-> ")
+    str_path += str(f"{trail[len(trail)-1].End_ver}  (total = {distance})")
     return str_path
