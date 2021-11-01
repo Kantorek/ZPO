@@ -52,24 +52,27 @@ def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
  
  
 def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Trail:
-    """Znajdź najkrótszą ścieżkę w grafie pomiędzy zadanymi wierzchołkami.
- 
-    :param g: graf
-    :param v_start: wierzchołek początkowy
-    :param v_end: wierzchołek końcowy
-    :return: najkrótsza ścieżka
-    """
 
- 
- 
-    return
-    raise NotImplementedError()
+    min_path = []
+    path = nx.dijkstra_path(g, v_start, v_end)
+    for p_key in range(len(path)-1):
+        explore_path = TrailSegmentEntry()
+        var = {}
+        explore_path.Start_ver = path[p_key]
+        explore_path.End_ver = path[p_key+1]
+        for w_key in g[path[p_key]][path[p_key+1]]:
+            var[w_key] = g[path[p_key]][path[p_key+1]][w_key]['weight']
+        explore_path.Edge = min(var, key=var.get)
+        explore_path.Weight = var[explore_path.Edge]
+        min_path.append(explore_path)
+    return min_path
  
  
 def trail_to_str(trail: Trail) -> str:
-    """Wyznacz reprezentację tekstową ścieżki.
- 
-    :param trail: ścieżka
-    :return: reprezentacja tekstowa ścieżki
-    """
-    raise NotImplementedError()
+    distance = 0
+    str_path = str
+    for x in range(len(trail)-1):
+        distance += trail[x].Weight
+        str_path += str(f"{x} -[{trail[x].Edge}: {trail[x].Weight}]->", sep=' ')
+    str_path += str(f"{trail[len(trail)-1].Edge}  (total = {distance})")
+    return str_path
