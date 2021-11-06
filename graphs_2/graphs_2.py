@@ -47,7 +47,7 @@ def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
                 s_val = (int(v[0]), int(v[1]), float(v[2]))
                 weights.append(s_val)
         M_Graph = nx.MultiDiGraph()
-        M_Graph.add_edges_from(weights)
+        M_Graph.add_weighted_edges_from(weights)
     return M_Graph
  
  
