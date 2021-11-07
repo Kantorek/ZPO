@@ -13,7 +13,7 @@ print(g.neighbors(G, 7, 3))
 
 import networkx as nx
 import matplotlib.pyplot as plt
-     
+
     # Stwórz obiekt reprezentujący graf 
     # skierowany (directed graph) bez krawędzi wielokrotnych...
 G = nx.DiGraph()
@@ -21,8 +21,8 @@ G = nx.DiGraph()
     # składa się z krotek, z których każda zawiera opis krawędzi:
     # (wierzchołek początkowy, wierzchołek końcowy, waga krawędzi)
 G.add_weighted_edges_from([(1, 2, 1), (1, 4, 1), (2, 1, 1), (2, 3, 1),
- (4, 5, 1), (5, 2, 1), (5, 6, 1), (7, 1, 1)])
-     
+    (4, 5, 1), (5, 2, 1), (5, 6, 1), (7, 1, 1)])
+
     # Zwizualizuj graf (wierzchołki wraz z 
     # etykietami, krawędzie z wagami):
     # (1) wyznacz położenie wierzchołków za 
@@ -36,7 +36,7 @@ nx.draw_networkx_edge_labels(G, pos,
     edge_labels=nx.get_edge_attributes(G, 'weight'))
     # UWAGA: Diagram zostanie wyświetlony dopiero po 
     # użyciu polecenia `plt.show()`!
-     
+
     # Wyznacz najkrótszą ścieżkę z wierzchołka o 
     # etykiecie 1 do wierzchołka o etykiecie 3 z użyciem
     #   algorytmu Dijkstry.

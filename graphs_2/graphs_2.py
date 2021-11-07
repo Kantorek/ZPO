@@ -34,9 +34,9 @@ class TrailSegmentEntry:
     End_ver: VertexID
     Edge: EdgeID
     Weight: float
- 
+
 Trail = List[TrailSegmentEntry]
-  
+
 def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
 
     with open(filepath) as file:
@@ -49,8 +49,8 @@ def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
         M_Graph = nx.MultiDiGraph()
         M_Graph.add_weighted_edges_from(weights)
     return M_Graph
- 
- 
+
+
 def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Trail:
 
     min_path = []
@@ -66,8 +66,8 @@ def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Tr
         explore_path.Weight = var[explore_path.Edge]
         min_path.append(explore_path)
     return min_path
- 
- 
+
+
 def trail_to_str(trail: Trail) -> str:
     distance = 0
     str_path = ""

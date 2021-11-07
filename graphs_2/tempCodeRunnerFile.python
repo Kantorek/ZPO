@@ -1,0 +1,9 @@
+import math
+
+list1 = [1.16, 1.13, 1.14, 1.08, 1.080, 1.06]
+list2 = []
+for x in range(0, 6):
+    list2.append((4 * math.pi**2 * 0.125) / (9.81 * list1[x]**2 ))
+
+for x in range(0, 6):
+    print(f"Czas = {list1[x]:.3f} =>  mi = {list2[x]:.3f}")
