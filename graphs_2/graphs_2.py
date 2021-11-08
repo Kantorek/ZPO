@@ -1,15 +1,15 @@
 # Jakub Klimek, 407457
 
-from typing import List, Set, Dict
+from typing import List, Set, Dict, NamedTuple
 import networkx as nx
 
 
 VertexID = int
 AdjList = Dict[VertexID, List[VertexID]]
 Distance = int
- 
-def neighbors(adjlist: AdjList, start_vertex_id: VertexID,
-              max_distance: Distance) -> Set[VertexID]:
+
+def neighbors(adjlist: AdjList, start_vertex_id: VertexID, 
+max_distance: Distance) -> Set[VertexID]:
     length = 0
     n_set = set()
     if max_distance < 0:
@@ -29,50 +29,47 @@ def neighbors(adjlist: AdjList, start_vertex_id: VertexID,
 
 EdgeID = int
 
-class TrailSegmentEntry:
-    Start_ver: VertexID
-    End_ver: VertexID
-    Edge: EdgeID
-    Weight: float
+
+class TrailSegmentEntry(NamedTuple):
+    start_ver: VertexID
+    end_ver: VertexID
+    edge: EdgeID
+    weight: float
+
 
 Trail = List[TrailSegmentEntry]
 
 def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
 
-    with open(filepath) as file:
-        weights = []
-        for line in file:
-            if line.strip():
-                v = line.split()
-                s_val = (int(v[0]), int(v[1]), float(v[2]))
-                weights.append(s_val)
-        M_Graph = nx.MultiDiGraph()
-        M_Graph.add_weighted_edges_from(weights)
-    return M_Graph
+    with open("directed_graph_blank_lines.dat", 'r') as f:
+        M_graph = nx.MultiDiGraph()
+        path = []
+        for line in f.readlines():
+            if(line.strip() != ""):
+                path.append(tuple(map(int, line.strip().split(" ")[
+                    :-1]))+(float(line.strip().split(" ")[-1]),))
+    M_graph.add_weighted_edges_from(path)
+    return M_graph
 
 
-def find_min_trail(g: nx.MultiDiGraph, v_start: VertexID, v_end: VertexID) -> Trail:
-
+def find_min_trail(g: nx.MultiDiGraph, start_ver: VertexID, end_ver: VertexID) -> Trail:
+    
+    path = nx.dijkstra_path(g, start_ver, end_ver)
     min_path = []
-    path = nx.dijkstra_path(g, v_start, v_end)
-    for p_key in range(len(path)-1):
-        explore_path = TrailSegmentEntry()
-        var = {}
-        explore_path.Start_ver = path[p_key]
-        explore_path.End_ver = path[p_key+1]
-        for w_key in g[path[p_key]][path[p_key+1]]:
-            var[w_key] = g[path[p_key]][path[p_key+1]][w_key]['weight']
-        explore_path.Edge = min(var, key=var.get)
-        explore_path.Weight = var[explore_path.Edge]
-        min_path.append(explore_path)
+    for i, v in enumerate(path[:-1]):
+        min_val = min([val['weight'] for key, val in g[v]
+                    [path[i+1]].items() if 'weight' in val])
+        edge = [key for key, val in g[v][path[i+1]].items() if min_val ==
+                val['weight']][0]
+        min_path.append(TrailSegmentEntry(v, path[i+1], edge, min_val))
     return min_path
 
-
 def trail_to_str(trail: Trail) -> str:
+    
     distance = 0
     str_path = ""
-    for x in range(len(trail)):
-        distance += trail[x].Weight
-        str_path += str(f"{trail[x].Start_ver} -[{x}: {trail[x].Weight}]-> ")
-    str_path += str(f"{trail[len(trail)-1].End_ver}  (total = {distance})")
+    for path in trail:
+        str_path += f"{path.start_ver} -[{path.edge}: {path.weight}]-> "
+        distance += path.weight
+    str_path += f"{path.end_ver}  (total = {distance})"
     return str_path
