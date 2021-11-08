@@ -3,8 +3,6 @@ import graphs_2 as g
 import networkx as nx
 
 
-
-
 class Test(unittest.TestCase):
 
     def test(self):
