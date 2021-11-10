@@ -41,7 +41,7 @@ Trail = List[TrailSegmentEntry]
 
 def load_multigraph_from_file(filepath: str) -> nx.MultiDiGraph:
 
-    with open("directed_graph_blank_lines.dat", 'r') as f:
+    with open(filepath, 'r') as f:
         M_graph = nx.MultiDiGraph()
         path = []
         for line in f.readlines():
