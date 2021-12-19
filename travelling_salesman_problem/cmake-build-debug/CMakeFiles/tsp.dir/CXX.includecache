@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/TSP.hpp
+vector
+-
+numeric
+-
+ostream
+-
+tsp_setup.hpp
+../include/tsp_setup.hpp
+
+../include/tsp_setup.hpp
+limits
+-
+vector
+-
+
+C:/Users/jakub/OneDrive/Pulpit/AGH/Programowanko/ZPO/travelling_salesman_problem/src/TSP.cpp
+TSP.hpp
+C:/Users/jakub/OneDrive/Pulpit/AGH/Programowanko/ZPO/travelling_salesman_problem/src/TSP.hpp
+algorithm
+-
+stack
+-
+optional
+-
+

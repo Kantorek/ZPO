@@ -45,5 +45,3 @@ def bubblesort(data: List[int]) -> Tuple[List[int], int]:
             break
         n -= 1
     return l, p
-
-

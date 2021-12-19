@@ -1,0 +1,3 @@
+C:/Users/jakub/OneDrive/Pulpit/AGH/Programowanko/ZPO/travelling_salesman_problem/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jakub/OneDrive/Pulpit/AGH/Programowanko/ZPO/travelling_salesman_problem/cmake-build-debug/CMakeFiles/tsp.dir
+C:/Users/jakub/OneDrive/Pulpit/AGH/Programowanko/ZPO/travelling_salesman_problem/cmake-build-debug/CMakeFiles/rebuild_cache.dir

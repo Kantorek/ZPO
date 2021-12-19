@@ -1,1 +1,1 @@
-0
+G = load_multigraph_from_file("directed_graph_blank_lines.dat")
