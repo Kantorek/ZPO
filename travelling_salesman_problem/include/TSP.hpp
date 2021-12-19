@@ -13,7 +13,6 @@
 
 using cost_matrix_t = std::vector<std::vector<cost_t>>;
 
-
 struct vertex_t {
     std::size_t row;
     std::size_t col;
